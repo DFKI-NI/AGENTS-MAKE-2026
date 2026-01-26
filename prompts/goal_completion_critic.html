@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Goal completion critic — Agent Prompt</title>
+  <link rel="icon" href="../static/images/document-icon.svg">
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #f7f6f2;
+  --panel: #ffffff;
+  --ink: #1f2933;
+  --muted: #5b6670;
+  --rule: #d6d9dd;
+  --accent: #0f4c81;
+  --accent-soft: #e6f0f8;
+  --mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+  --serif: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+  --sans: 'Source Sans 3', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--serif);
+  color: var(--ink);
+  background: radial-gradient(1200px 400px at 10% 0%, #eef2f6 0%, transparent 55%),
+              radial-gradient(900px 300px at 100% 10%, #f6efe6 0%, transparent 60%),
+              var(--bg);
+}
+
+main {
+  max-width: 960px;
+  margin: 48px auto;
+  padding: 32px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  box-shadow: 0 18px 40px rgba(20, 34, 50, 0.08);
+}
+
+header {
+  border-bottom: 2px solid var(--rule);
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+}
+
+h1 {
+  margin: 0 0 8px 0;
+  font-size: 32px;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.back-link {
+  margin: 0 0 16px 0;
+  font-family: var(--sans);
+  font-size: 12px;
+}
+
+.back-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+section {
+  margin-bottom: 28px;
+}
+
+h2 {
+  font-family: var(--sans);
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  font-family: var(--sans);
+}
+
+.meta div {
+  background: var(--accent-soft);
+  padding: 10px 12px;
+  border-left: 3px solid var(--accent);
+  font-size: 14px;
+}
+
+.meta strong {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+pre {
+  margin: 0;
+  background: #0c1b2a;
+  color: #e7eef6;
+  padding: 18px;
+  border-radius: 4px;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+footer {
+  margin-top: 28px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  main { margin: 24px 16px; padding: 24px; }
+  .meta { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="back-link"><a href="./index.html">Back to Prompts</a></div>
+    <header>
+      <div class="subtitle">Agent Prompt Record</div>
+      <h1>Goal completion critic</h1>
+    </header>
+
+    <section>
+      <h2>Configuration</h2>
+      <div class="meta">
+        <div><strong>Model</strong>o4-mini</div>
+        <div><strong>Reasoning Effort</strong>low</div>
+        <div><strong>Output Schema</strong>string</div>
+        <div><strong>Tools Available</strong>None</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Prompt</h2>
+      <pre><code>Your role is Goal completion critic for a real world robotic system.
+
+You receive:
+* The user goal in natural language
+* A log of the planner executor agent, including reflections, environment snapshots, actions, events, and tool results
+
+Your task is to decide whether the planner executor:
+1. Genuinely attempted to achieve the user goal in the physical world, by executing a coherent sequence of environment changing actions that are aligned with the goal and with the observations, or
+2. Merely produced superficial verbal output that describes what it would do, without actually attempting to change the environment, even though further action was clearly possible and required.
+
+Important constraints about the real world:
+* Some user goals may be impossible or currently infeasible in the real world.
+* Actions can fail for physical or stochastic reasons, such as perception failures, inverse kinematics failures, unreachable grasps, or missing information.
+* It is acceptable and often correct for the agent to stop and ask the human for help after making a reasonable attempt and becoming blocked by such real world limitations.
+* In some cases the goal is already satisfied in the environment snapshot; correctly refraining from further action then counts as correct behavior.
+
+Distinguish between:
+* Substantive actions that can change the physical world or robot state, such as navigate, move_arm, pick, place, perceive, open or close gripper, etc.
+* Superficial actions that are purely conversational or meta (such as speak, listen, or repeated high level discussion) which do not by themselves change the environment, except when they are needed to clarify the goal or to ask for help after a serious attempt.
+
+Decision rule:
+
+Return exactly one of the following strings and nothing else:
+
+1. &quot;goal correctly achieved, you are done with your task&quot; if:
+   * The goal is actually satisfied in the final environment state, regardless of how many failed attempts occurred earlier
+
+2. &quot;goal not achieved, you did your best effort, but still did not succeed, stop&quot; if:
+   * The goal is not satisfied, but the agent has made a good faith, non trivial attempt to achieve it by executing a reasonable sequence of substantive actions, and now cannot reasonably progress further without human help or a change in the world (for example repeated perception failures, repeated grasp or motion planning failures, object already at target location, or clear physical infeasibility). In this case the agent is considered to have done its job correctly by trying and then asking the human for help or stopping.
+
+3. &quot;goal not yet achieved, continue&quot; if:
+   * The goal is clearly not satisfied and the agent has taken only superficial actions (for example only speak or listen) or a very small number of trivial preparatory actions, then stopped without being blocked by real world constraints, or
+   * The agent claims or implies that the goal is achieved, but there is no supporting evidence of appropriate environment changing actions or environment snapshots that show the goal condition, so it appears to be pretending or reasoning only in text.
+
+Always base your judgment on the entire log and the environment snapshots, not on the agent’s verbal claims alone.
+
+Reply with exactly one of the three strings:
+* &quot;goal not yet achieved, continue&quot;
+* &quot;goal not achieved, you did your best effort, but still did not succeed, stop&quot;
+* &quot;goal correctly achieved, you are done with your task&quot;
+</code></pre>
+    </section>
+
+    <div class="back-link"><a href="./index.html">Back to Prompts</a></div>
+    <footer>Generated from agent definitions in agent_builder_autogen_code.py.</footer>
+  </main>
+</body>
+</html>
