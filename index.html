@@ -6,7 +6,7 @@
         content="A short starter to build website for your paper.">
   <meta name="keywords" content="Paper, website">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TODO Window title</title> <!-- the browser tab will display this text -->
+  <title>AGENTIC AI for Robot Control</title> <!-- the browser tab will display this text -->
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -50,31 +50,42 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">TODO: Title of your paper</h1>
+          <h1 class="title is-1 publication-title">Agentic AI for Robot Control:<br>
+                                                   Flexible but still Fragile</h1>
           <div class="is-size-5 publication-authors">
-
-            <!-- TODO: modify authors, affiliations and personal websites-->
-
             <span class="author-block">
-              <a href="https://www.dfki.de/web/ueber-uns/mitarbeiter/person/TODO">TODO Author1 Name</a><sup>1</sup>,</span>
-
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/osli01">Oscar Lima</a><sup>1,2</sup>,</span>
             <span class="author-block">
-              <a href="https://www.dfki.de/web/ueber-uns/mitarbeiter/person/TODO">TODO Author2 Name</a><sup>2</sup>,</span>
-
-            <!-- change of line -->
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/mavi01">Marc Vinci</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/magu02">Martin Günther</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/mare10">Marian Renz</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/alsu01">Alexander Sung</a><sup>1</sup>,</span>
             <br>
-
             <span class="author-block">
-              <a href="https://www.dfki.de/web/ueber-uns/mitarbeiter/person/TODO">TODO Author3 Name</a><sup>1,2</sup>,</span>
-
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/sest01">Sebastian Stock</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://www.dfki.de/web/ueber-uns/mitarbeiter/person/TODO">TODO Author4 Name</a><sup>2,1</sup>,</span>
-
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/jobr06">Johannes Brust</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/leni01">Lennart Niecksch</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/zoyi01">Zongyao Yi</a><sup>1,2</sup>,</span>
+            <br>
+            <span class="author-block">
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/igfe01">Felix Igelbrink</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.dfki.de/en/web/about-us/employee/person/beki03">Benjamin Kisliuk</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://martin.atzmueller.net/">Martin Atzmueller</a><sup>2,1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.uni-osnabrueck.de/fb6/informatik/hertzberg">Joachim Hertzberg</a><sup>2,1</sup></span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>German Research Center for Artificial Intelligence (DFKI), Osnabrück, Germany.</span>
-            <span class="author-block"><sup>2</sup>Osnabrück University, Institute of Computer Science, Germany.</span>
+            <span class="author-block"><sup>1</sup>German Research Center for Artificial Intelligence (DFKI), Cooperative and Autonomous Systems (CAS), Hamburger Straße 24, Osnabrück, Germany.</span>
+            <span class="author-block"><sup>2</sup>Osnabrück University, Semantic Information Systems Group, Wachsbleiche 27, Osnabrück, Germany.</span>
           </div>
 
           <div class="column has-text-centered">
@@ -163,7 +174,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            TODO_ABSTRACT Robotic task execution faces challenges due to the inconsistency between symbolic planner models and the rich control structures actually running on the robot. In this paper, we present the first physical deployment of an integrated actor-planner system that shares hierarchical operational models for both acting and planning, interleaving the Reactive Acting Engine (RAE) with an anytime UCT-like Monte Carlo planner (UPOM). We implement RAE+UPOM on a mobile manipulator in a real-world deployment for an object collection task. Our experiments demonstrate robust task execution under action failures and sensor noise, and provide empirical insights into the interleaved acting-and-planning decision making process.
+            Current research leverages generative models capabilities and common sense for robot control. In this paper we present such a system, where a reasoning capable model plans and executes tasks by selecting and invoking robot actions within an agentic workflow that controls real robots in two settings: (i) autonomous agricultural navigation and sensing and (ii) tabletop object grasping, placement, and box insertion. Both settings involve uncertainty, partial observability, sensor noise, and ambiguous natural language commands. The system provides transparent introspection into its planning and decision processes, reacts to exogenous events, and supports operator interventions modifying or redirecting current execution. Experiments on two distinct robot platforms reveal substantial fragility due to hallucinations, nondeterministic behaviour, instruction following errors, and high sensitivity to prompt specification. On the other hand, we show that such a system is very flexible and easy to adapt to other robotic systems with a few changes in the system prompt and robot interface bindings.
           </p>
         </div>
       </div>
