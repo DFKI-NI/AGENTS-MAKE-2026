@@ -1,8 +1,8 @@
-# AGENTS_MAKE_2026
+# AGENTS-MAKE-2026
 
-This is the repository that contains source code for the [AGENTS_MAKE_2026 website](https://dfki-ni.github.io/AGENTS_MAKE_2026).
+This is the repository that contains source code for the [AGENTS-MAKE-2026 website](https://dfki-ni.github.io/AGENTS-MAKE-2026).
 
-If you find AGENTS_MAKE_2026 useful for your work please cite:
+If you find AGENTS-MAKE-2026 useful for your work please cite:
 ```
 @misc{TODO,
       title={Agentic AI for Robot Control: Flexible but still Fragile}, 
