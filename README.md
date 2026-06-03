@@ -4,14 +4,16 @@ This is the repository that contains source code for the [AGENTS-MAKE-2026 websi
 
 If you find AGENTS-MAKE-2026 useful for your work please cite:
 ```
-@misc{TODO,
-      title={Agentic AI for Robot Control: Flexible but still Fragile}, 
-      author={Lima, Oscar and Vinci, Marc and G{"u}nther, Martin and Renz, Marian and Sung, Alexander and Stock, Sebastian and Brust, Johannes and Niecksch, Lennart and Yi, Zongyao and Igelbrink, Felix and Kisliuk, Benjamin and Atzmueller, Martin and Hertzberg, Joachim},
-      year={2026},
-      eprint={TODO},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO},
-      url={https://arxiv.org/abs/TODO}, 
+@inproceedings{lima2026agentic,
+  title     = {{Agentic AI for Robot Control: Flexible but Still Fragile}},
+  author    = {Lima, Oscar and Vinci, Marc and G{\"u}nther, Martin and Renz, Marian and Sung, Alexander and Stock, Sebastian and Brust, Johannes and Niecksch, Lennart and Yi, Zongyao and Igelbrink, Felix and Kisliuk, Benjamin and Atzmueller, Martin and Hertzberg, Joachim},
+  booktitle = {Proceedings of the AAAI Symposium Series},
+  volume    = {8},
+  number    = {1},
+  pages     = {465--473},
+  year      = {2026},
+  doi       = {10.1609/aaaiss.v8i1.42578},
+  url       = {https://ojs.aaai.org/index.php/AAAI-SS/article/view/42578}
 }
 ```
 
